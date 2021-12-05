@@ -31,7 +31,8 @@ extension PhoneVerificationController: UITextFieldDelegate {
 	@IBAction func focusOnLastField() {
 		if let last = codeTextFields.first(where: { $0.text?.isEmpty ?? true }) {
 			last.becomeFirstResponder()
-		} else {
+		}
+    else {
 			codeTextFields.last?.becomeFirstResponder()
 		}
 	}
@@ -67,12 +68,20 @@ extension PhoneVerificationController: UITextFieldDelegate {
 			guard let strongSelf = self else { return }
 
 			strongSelf.codeActivityIndicator.stopAnimating()
+
 			if let error = error {
-				strongSelf.show(error: error, in: strongSelf.codeDescriptionLabel, original: L10n.Description.code)
+				strongSelf.show(
+          error: error,
+          in: strongSelf.codeDescriptionLabel,
+          original: L10n.Description.code
+        )
 			} else {
 				strongSelf.codeDescriptionLabel.text = L10n.Message.success
 				if let delegate = strongSelf.delegate {
-					delegate.verified(phoneNumber: strongSelf.phoneNumber, controller: strongSelf)
+					delegate.verified(
+            phoneNumber: strongSelf.phoneNumber,
+            controller: strongSelf
+          )
 				} else {
 					strongSelf.dismiss(animated: true, completion: nil)
 				}

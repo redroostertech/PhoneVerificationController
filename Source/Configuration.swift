@@ -15,7 +15,10 @@ public struct Configuration {
 		- Parameter phoneNumber: the phone number to verify
 		- Parameter completion: the completion block (must be called!)
 	*/
-	public typealias RequestCodeBlock = (_ phoneNumber: String, _ completion: @escaping (_ verificationID: String?, _ error: Error?) -> Void) -> Void
+	public typealias RequestCodeBlock = (
+    _ phoneNumber: String,
+    _ completion: @escaping (_ verificationID: String?, _ error: Error?) -> Void
+  ) -> Void
 
 	/**
 		Block that receives a verification ID and code, and is expected to call a completion block with success (or an error).
@@ -24,7 +27,11 @@ public struct Configuration {
 		- Parameter verificationCode: the matching verification code
 		- Parameter completion: the completion block (must be called!)
 	*/
-	public typealias SignInBlock = (_ verificationID: String, _ verificationCode: String, _ completion: @escaping (_ error: Error?) -> Void) -> Void
+	public typealias SignInBlock = (
+    _ verificationID: String,
+    _ verificationCode: String,
+    _ completion: @escaping (_ error: Error?) -> Void
+  ) -> Void
 
 	let statusBar: UIStatusBarStyle
 	let keyboard: UIKeyboardAppearance
@@ -74,24 +81,26 @@ public struct Configuration {
 		- Parameter requestCode: Block called for requesting the verification code from FireBase Auth API
 		- Parameter signIn: Block called for verifying a code with the FireBase Auth API
 	*/
-	public init(statusBar: UIStatusBarStyle = .lightContent,
-	     keyboard: UIKeyboardAppearance = .dark,
-	     headerBackground: UIImage? = nil,
-	     headerForeground: UIImage? = nil,
-	     background: UIColor = .black,
-	     text: UIColor = .white,
-	     buttonTint: UIColor = .white,
-	     buttonTextDisabled: UIColor = .lightGray,
-	     buttonTextEnabled: UIColor = .white,
-	     buttonBackgroundDisabled: UIColor = UIColor.lightGray.withAlphaComponent(0.6),
-	     buttonBackgroundEnabled: UIColor = .red,
-	     codeFieldBackgroundEmpty: UIColor = .clear,
-	     codeFieldBackgroundFilled: UIColor = .white,
-	     codeFieldText: UIColor = .black,
-	     animationDuration: TimeInterval = 0.3,
-	     errorDuration: TimeInterval = 5,
-	     requestCode: @escaping RequestCodeBlock,
-	     signIn: @escaping SignInBlock) {
+	public init(
+    statusBar: UIStatusBarStyle = .lightContent,
+    keyboard: UIKeyboardAppearance = .dark,
+    headerBackground: UIImage? = nil,
+    headerForeground: UIImage? = nil,
+    background: UIColor = .black,
+    text: UIColor = .white,
+    buttonTint: UIColor = .white,
+    buttonTextDisabled: UIColor = .lightGray,
+    buttonTextEnabled: UIColor = .white,
+    buttonBackgroundDisabled: UIColor = UIColor.lightGray.withAlphaComponent(0.6),
+    buttonBackgroundEnabled: UIColor = .red,
+    codeFieldBackgroundEmpty: UIColor = .clear,
+    codeFieldBackgroundFilled: UIColor = .white,
+    codeFieldText: UIColor = .black,
+    animationDuration: TimeInterval = 0.3,
+    errorDuration: TimeInterval = 5,
+    requestCode: @escaping RequestCodeBlock,
+    signIn: @escaping SignInBlock
+  ) {
 		self.statusBar = statusBar
 		self.keyboard = keyboard
 		self.headerBackground = headerBackground

@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 	}
 
 	# configuration
-	s.ios.deployment_target = '9.0'
+	s.ios.deployment_target = '13.0'
 	s.swift_version = '5.0'
 
 	# files
@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
 	}
 
 	# dependencies
-	s.dependency 'CountryPickerSwift', '~> 1.8'
-	s.dependency 'PhoneNumberKit', '~> 2.6'
+	s.dependency 'CountryPickerSwift'
+	s.dependency 'PhoneNumberKit'
 end
