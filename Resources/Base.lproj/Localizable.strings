@@ -3,7 +3,7 @@
 "button.try-again" = "Try again";
 "button.verify" = "Verify";
 
-"description.phone" = "Please enter your phone number (ex. +32 473123456)";
+"description.phone" = "Please enter your phone number";
 "description.code" = "Please enter the verification code you will receive by SMS";
 
 "message.success" = "Success!";
