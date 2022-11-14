@@ -26,7 +26,7 @@ internal enum L10n {
   internal enum Description {
     /// Please enter the verification code you will receive by SMS
     internal static let code = L10n.tr("Localizable", "description.code")
-    /// Please enter your phone number (ex. +32 473123456)
+    /// Please enter your phone number
     internal static let phone = L10n.tr("Localizable", "description.phone")
   }
 
