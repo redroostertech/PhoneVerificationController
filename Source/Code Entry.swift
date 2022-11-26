@@ -67,25 +67,27 @@ extension PhoneVerificationController: UITextFieldDelegate {
 		configuration.signIn(configuration.verificationID ?? "", code) { [weak self] error in
 			guard let strongSelf = self else { return }
 
-			strongSelf.codeActivityIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                strongSelf.codeActivityIndicator.stopAnimating()
 
-			if let error = error {
-				strongSelf.show(
-          error: error,
-          in: strongSelf.codeDescriptionLabel,
-          original: L10n.Description.code
-        )
-			} else {
-				strongSelf.codeDescriptionLabel.text = L10n.Message.success
-				if let delegate = strongSelf.delegate {
-					delegate.verified(
-            phoneNumber: strongSelf.phoneNumber,
-            controller: strongSelf
-          )
-				} else {
-					strongSelf.dismiss(animated: true, completion: nil)
-				}
-			}
+                if let error = error {
+                    strongSelf.show(
+                        error: error,
+                        in: strongSelf.codeDescriptionLabel,
+                        original: L10n.Description.code
+                    )
+                } else {
+                    strongSelf.codeDescriptionLabel.text = L10n.Message.success
+                    if let delegate = strongSelf.delegate {
+                        delegate.verified(
+                            phoneNumber: strongSelf.phoneNumber,
+                            controller: strongSelf
+                        )
+                    } else {
+                        strongSelf.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
 		}
 	}
 }
